@@ -1,39 +1,54 @@
 from tkinter import *
-# import PyPDF2
 import records
-
+from tkinter import messagebox
 
 root = Tk()
 root.title("PDF Reader")
-root.geometry("1000x700")
-root.configure(bg="#b7b7a4")
+root.overrideredirect(True)
+root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
+bgc = "#adb5bd"
+root.configure(bg=bgc)
 
-bg = PhotoImage(file='images.png')
+bgImg = PhotoImage(file='images.png')
 
-logoLabel = Label(image=bg, bg="#b7b7a4", width=1000, height=170)
+logoLabel = Label(image=bgImg, bg=bgc, width=1000, height=170)
 logoLabel.place(x=0, y=130)
 
-
 # INSTRUCTIONS
-instructions = Label(text="Select a PDF file on your computer to extract all its text", bg="#b7b7a4", font="Raleway")
+instructions = Label(text="Select a PDF file on your computer to extract all its text", bg=bgc, font="Raleway")
 instructions.place(x=300, y=325)
 
 
-def clearText():
-    records.clearTextBox()
-    return
+# top right x button
+def close():
+    closeBtn = Button(text="X", command=on_closing, bg="#efefd0", fg="black", height=2, width=5)
+    closeBtn.place(x=1235, y=1)
 
 
+def on_closing():
+    if messagebox.askokcancel("Quit", "Do you want to quit?"):
+        root.destroy()
+
+
+# opening pdf with the browse button
 def file():
     records.content()
     return
 
 
+# opening new pdf through menu
 def secondFile():
     records.secondContent()
     return
 
 
+# clear text
+def clearText():
+    records.clearTextBox()
+    return
+
+
+# search for pdf nd display menu
 def openFile():
     browseText.set("Loading...")
     file()
@@ -49,7 +64,7 @@ def openFile():
     fileMenu.add_command(label="Clear", command=clearText)
     # fileMenu.add_command(label="Page", command=select)
     fileMenu.add_separator()
-    fileMenu.add_command(label="Exit", command=root.quit)
+    close()
 
     browseText.set("Browse")
 
@@ -63,5 +78,6 @@ browseBtn.place(x=50, y=200)
 browseText.set("Browse")
 browseBtn.place(x=425, y=400)
 
-
+# close button
+close()
 root.mainloop()

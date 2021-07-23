@@ -22,7 +22,7 @@ def content():
         pageContent = pages.extractText()
 
         # TEXT BOX
-        textBox = Text(height=40, width=118, padx=9, pady=0)
+        textBox = Text(height=40, width=153, padx=10, pady=1)
         textBox.insert(1.0, pageContent)
         textBox.tag_configure('center', justify='center')
         textBox.tag_add('center', 1.0, 'end')
@@ -34,10 +34,11 @@ def content():
         # myList.pack(side=LEFT, fill=BOTH)
         scrollBar.config(command=myList.yview)
 
-        Button(text="Next Page", command=index).place(x=910, y=658)
-        Button(text="Previous Page", command=index).place(x=10, y=658)
+        Button(text="Previous Page", command=index).place(x=10, y=670)
+        Button(text="Next Page", command=index).place(x=1191, y=670)
 
 
+# display content without the scrollbar
 def secondContent():
     file = askopenfile(mode='rb', title="Choose a File", filetype=[("PDF file", "*.pdf")])
     if file:
@@ -46,7 +47,7 @@ def secondContent():
         pageContent = pages.extractText()
 
         # TEXT BOX
-        textBox = Text(height=40, width=118, padx=9, pady=0)
+        textBox = Text(height=40, width=153, padx=9, pady=1)
         textBox.insert(1.0, pageContent)
         textBox.tag_configure('center', justify='center')
         textBox.tag_add('center', 1.0, 'end')
