@@ -9,6 +9,7 @@ def clearTextBox():
     textBox.delete(1.0, END)
 
 
+# supposed to handle the next and previous pages
 def index():
     pass
 
